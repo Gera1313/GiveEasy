@@ -14,6 +14,19 @@ GiveEasy
 - [Notes](#notes)
 
 ## Description
+
+A platform where users can create fundraisers for charitable causes, and donors can make contributions.
+
+### Features
+
+- User authentication for fundraiser creators and donors.
+- GraphQL for managing fundraisers and donations.
+- Integration with Stripe for donations.
+- Admin panel to review and approve fundraisers.
+- Responsive UI to allow users to easily browse fundraisers.
+
+Bonus: Maybe PWA functionality to make the site installable and usable offline.
+
 ### User Story: 
 
 ```md
@@ -38,8 +51,55 @@ Given I am a logged-in user, when I navigate to my profile, then I should see a 
 Given I am on the platform, when I view the site on a mobile device, then I should see a responsive and mobile-friendly layout that is easy to navigate.
 ```
 
-
 ## Installations
+
+### Backend Dependencies
+```md
+Express: for setting up my server.
+
+Mongoose: To interact with my MongoDB database using models.
+
+Graphql: For handling GraphQL queries and mutations.
+
+Express-graphql: For handling GraphQL queries and mutations.
+
+Jsonwebtoken: For user authentication.
+
+Bcrypt: For password hashing and security.
+
+Cors: To allow cross-origin requests between my frontend and backend.
+
+Dotenv: To store sensitive data like API keys and secret tokens in environment variables.
+```
+
+### Frontend Dependencies
+```md
+React: The framework for building my front-end.
+
+Apollo Client: To interact with my GraphQL API on the frontend.
+
+JWT Decode: To handle decoding JSON web tokens on the client side.
+
+Axios (maybe): For making HTTP requests (if I decide to use this over Apollo).
+```
+
+### Development & Utilities
+```md
+Nodemon: For automatically restarting my server during development.
+
+Concurrently: To run both backend and frontend servers simultaneously.
+
+ESLint: For linting and code quality checks.
+
+dotenv: for using .env variables
+```
+
+### Authentication & Payments
+```md
+Stripe: For handling payments (if I use the Stripe API).
+
+Stripe React Elements: For integrating the Stripe payment form in my React frontend.
+```
 
 ## Usage
 Donations
