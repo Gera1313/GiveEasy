@@ -1,8 +1,9 @@
 const express = require('express'); 
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const User = require('./models/User');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -31,7 +32,9 @@ app.post('/api/register', async (req, res) => {
     const { username, email, password } = req.body;
     
     try {
-        const newUser = new User({ username, email, password });
+        // Hashed password
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ username, email, password: hashedPassword });
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully!' });
     } catch (error) {
