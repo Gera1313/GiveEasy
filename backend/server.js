@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const User = require('./models/User');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -23,6 +24,19 @@ app.get('/', (req, res) => {
 // Test the route
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API is working!' });
+});
+
+// Registered users route
+app.post('/api/register', async (req, res) => {
+    const { username, email, password } = req.body;
+    
+    try {
+        const newUser = new User({ username, email, password });
+        await newUser.save();
+        res.status(201).json({ message: 'User registered successfully!' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error registering user', error });
+    }
 });
 
 app.listen(PORT, () => {
