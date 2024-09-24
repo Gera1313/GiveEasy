@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const authMiddleware = require('./auth');
 require('dotenv').config();
 
 const app = express();
