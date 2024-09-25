@@ -9,4 +9,9 @@ const donationSchema = new mongoose.Schema({
         type: String,
         required: true // anonymous donations
     },
+    fundraiser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Fundraiser', // referencing the fundraiser model
+        required: true
+    },
 })
