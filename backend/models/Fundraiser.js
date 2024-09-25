@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 const fundraiserSchema = new mongoose.Schema({
     title: {
@@ -14,20 +14,20 @@ const fundraiserSchema = new mongoose.Schema({
         required: true
     },
     currentAmount: {
-        type: Number, 
+        type: Number,
         default: 0 // Donations will add to this amount
     },
     createdAt: {
         type: Date,
         default: Date.now
     },
-    // Not sure if I want to keep this last one or not. Tracks which user created the fundraiser.
+    // Not sure if I want to keep this last one. Tracks who created the fundraiser
     creator: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User' // Reference to the User model
     }
 });
 
-const Fundraiser = mongoose.model('Fundraiser', fundraiserSchema); 
+const Fundraiser = mongoose.model('Fundraiser', fundraiserSchema);
 
 module.exports = Fundraiser;
