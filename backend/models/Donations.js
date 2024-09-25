@@ -14,4 +14,12 @@ const donationSchema = new mongoose.Schema({
         ref: 'Fundraiser', // referencing the fundraiser model
         required: true
     },
-})
+    createAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+const Donation = mongoose.model('Donation', donationSchema);
+
+module.exports = Donation;
