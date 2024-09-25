@@ -68,6 +68,12 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// Protected route
+app.get('/api/protected', authMiddleware, (req, res) => {
+    res.json({ message: 'This is a protected route. Only accessible with a valid token!', user: req.user });
+});
+
+// Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
