@@ -118,3 +118,8 @@ You can email me
 [Deployed Site]()
 
 ## Notes
+
+Done: 
+1. Register users.
+2. Log in users and generate a JWT token.
+3. Protect specific routes (like /api/protected) using JWT authentication.
