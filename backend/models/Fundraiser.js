@@ -13,4 +13,21 @@ const fundraiserSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-})
+    currentAmount: {
+        type: Number, 
+        default: 0 // Donations will add to this amount
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    // Not sure if I want to keep this last one or not. Tracks which user created the fundraiser.
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+});
+
+const Fundraiser = mongoose.model('Fundraiser', fundraiserSchema); 
+
+module.exports = Fundraiser;
