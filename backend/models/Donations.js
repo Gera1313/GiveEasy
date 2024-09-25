@@ -7,14 +7,14 @@ const donationSchema = new mongoose.Schema({
     },
     donorName: {
         type: String,
-        required: true // anonymous donations
+        required: true // optional if anonymous donations are allowed
     },
     fundraiser: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Fundraiser', // referencing the fundraiser model
+        ref: 'Fundraiser', // Referencing the Fundraiser model
         required: true
     },
-    createAt: {
+    createdAt: {
         type: Date,
         default: Date.now
     }
