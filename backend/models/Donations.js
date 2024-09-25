@@ -5,5 +5,8 @@ const donationSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    
+    donorName: {
+        type: String,
+        required: true // anonymous donations
+    },
 })
