@@ -134,6 +134,19 @@ app.put('/api/fundraisers/:id', authMiddleware, async (req, res) => {
     }
 });
 
+// DELETE a fundraiser
+app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
+    try {
+        const deletedFundraiser = await Fundraiser.findByIdAndDelete(req.params.id);
+        if (!deletedFundraiser) {
+            return res.status(404).json({ message: 'Fundraiser not found' });
+        }
+        res.status(200).json({ message: 'Fundraiser deleted successfully!' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting fundraiser', error });
+    }
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
