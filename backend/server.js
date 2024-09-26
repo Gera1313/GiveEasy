@@ -147,6 +147,9 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
     }
 });
 
+// This endpoint will allow users to make a donation to a specific fundraiser:
+
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
