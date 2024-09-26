@@ -74,6 +74,24 @@ app.get('/api/protected', authMiddleware, (req, res) => {
     res.json({ message: 'This is a protected route. Only accessible with a valid token!', user: req.user });
 });
 
+// CREATE a new fundraiser
+app.post('/api/fundraisers', authMiddleware, async (req, res) => {
+    const { title, description, goalAmount } = req.body;
+
+    try {
+        const newFundraiser = new Fundraiser({
+            title,
+            description,
+            goalAmount,
+            creator: req.user.id // Attach the user's ID if I decide to keep the creator field
+        });
+        await newFundraiser.save();
+        res.status(201).json({ message: 'Fundraiser created successfully!', fundraiser: newFundraiser });
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating fundraiser', error });
+    }
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
