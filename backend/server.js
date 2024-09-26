@@ -92,6 +92,16 @@ app.post('/api/fundraisers', authMiddleware, async (req, res) => {
     }
 });
 
+// GET all fundraisers
+app.get('/api/fundraisers', async (req, res) => {
+    try {
+        const fundraisers = await Fundraiser.find();
+        res.status(200).json(fundraisers);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching fundraisers', error });
+    }
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
