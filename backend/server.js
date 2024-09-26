@@ -102,6 +102,19 @@ app.get('/api/fundraisers', async (req, res) => {
     }
 });
 
+// GET 1 fundraiser by ID
+app.get('/api/fundraisers/:id', async (req, res) => {
+    try {
+        const fundraiser = await Fundraiser.findById(req.params.id);
+        if (!fundraiser) {
+            return res.status(404).json({ message: 'Fundraiser not found' });
+        }
+        res.status(200).json(fundraiser);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching fundraiser', error });
+    }
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
