@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const authMiddleware = require('./auth');
+const Fundraiser = require('./models/Fundraiser');
 require('dotenv').config();
 
 const app = express();
