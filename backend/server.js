@@ -115,6 +115,25 @@ app.get('/api/fundraisers/:id', async (req, res) => {
     }
 });
 
+// UPDATE a fundraiser
+app.put('/api/fundraisers/:id', authMiddleware, async (req, res) => {
+    const { title, description, goalAmount } = req.body;
+
+    try {
+        const updatedFundraiser = await Fundraiser.findByIdAndUpdate(
+            req.params.id,
+            { title, description, goalAmount },
+            { new: true } // Return the updated document
+        );
+        if (!updatedFundraiser) {
+            return res.status(404).json({ message: 'Fundraiser not found' });
+        }
+        res.status(200).json({ message: 'Fundraiser updated successfully!', fundraiser: updatedFundraiser });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating fundraiser', error });
+    }
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
