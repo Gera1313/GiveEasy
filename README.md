@@ -20,7 +20,7 @@ A platform where users can create fundraisers for charitable causes, and donors 
 ### Features
 
 - User authentication for fundraiser creators and donors.
-- GraphQL for managing fundraisers and donations. REST API? 
+- REST API for managing fundraisers and donations.
 - Integration with Stripe for donations.
 - Admin panel to review and approve fundraisers. (maybe)
 - Responsive UI to allow users to easily browse fundraisers.
@@ -59,9 +59,9 @@ Express: for setting up my server.
 
 Mongoose: To interact with my MongoDB database using models.
 
-Graphql: For handling GraphQL queries and mutations.
+<!-- Graphql: For handling GraphQL queries and mutations. -->
 
-Express-graphql: For handling GraphQL queries and mutations.
+<!-- Express-graphql: For handling GraphQL queries and mutations. -->
 
 Jsonwebtoken: For user authentication.
 
