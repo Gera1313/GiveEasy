@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const User = require('./models/User');
 const authMiddleware = require('./auth');
 const Fundraiser = require('./models/Fundraiser');
+const Donation = require('./models/Donations'); 
 require('dotenv').config();
 
 const app = express();
@@ -148,7 +149,7 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
 });
 
 // This endpoint will allow users to make a donation to a specific fundraiser:
-
+app.post('/api/donations', authMiddleware, )
 
 // Starts the server
 app.listen(PORT, () => {
