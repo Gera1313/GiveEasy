@@ -177,6 +177,21 @@ app.post('/api/donations', authMiddleware, async (req, res) => {
     }
 });
 
+// This will return all donations related to a specific fundraiser: 
+app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, async (req, res) => {
+    const { fundraiserId } = req.params;
+
+    try {
+        const donations = await Donation.find({ fundraiser: fundraiserId }).populate('fundraiser', 'title');
+        if (!donations.length) {
+            return res.status(404).json({ message: 'No donations found for this fundraiser' });
+        }
+
+        res.status(200).json(donations);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving donations', error });
+    }
+});
 
 // Starts the server
 app.listen(PORT, () => {
