@@ -193,6 +193,29 @@ app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, async (req, 
     }
 });
 
+// This route allows users to update a donation (if donor wants to increase their donation amount)
+app.put('/api/donations/:donationId', authMiddleware, async (req, res) => {
+    const { donationId } = req.params;
+    const { amount, donorName } = req.body;
+
+    try {
+        const donation = await Donation.findById(donationId);
+        if (!donation) {
+            return res.status(404).json({ message: 'Donation not found' });
+        }
+
+        // Update the donation details
+        donation.amount = amount || donation.amount;
+        donation.donorName = donorName || donation.donorName;
+
+        await donation.save();
+        res.status(200).json({ message: 'Donation updated successfully', donation });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating donation', error });
+    }
+});
+
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
