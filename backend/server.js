@@ -215,6 +215,8 @@ app.put('/api/donations/:donationId', authMiddleware, async (req, res) => {
     }
 });
 
+// This endpoint allows users to delete a donation
+
 
 // Starts the server
 app.listen(PORT, () => {
