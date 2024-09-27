@@ -219,7 +219,14 @@ app.put('/api/donations/:donationId', authMiddleware, async (req, res) => {
 app.delete('/api/donations/:donationId', authMiddleware, async (req, res) => {
     const { donationId } = req.params;
 
-    
+    try {
+        const donation = await Donation.findByIdAndDelete(donationId);
+        if (!donation) {
+            return res.status(404).json({ message: 'Donation not found' });
+        }
+
+        
+    }
 })
 
 // Starts the server
