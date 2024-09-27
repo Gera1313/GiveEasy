@@ -193,6 +193,19 @@ app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, async (req, 
     }
 });
 
+// This endpoint will return all donations
+app.get('/api/donations', authMiddleware, async (req, res) => {
+    try {
+        const donations = await Donation.find().populate('fundraiser', 'title');
+        if (!donations.length) {
+            return res.status(404).json({ message: 'No donations found' });
+        }
+        res.status(200).json(donations);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving donations', error });
+    }
+});
+
 // This route allows users to update a donation (if donor wants to increase their donation amount)
 app.put('/api/donations/:donationId', authMiddleware, async (req, res) => {
     const { donationId } = req.params;
