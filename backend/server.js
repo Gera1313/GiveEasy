@@ -230,6 +230,11 @@ app.delete('/api/donations/:donationId', authMiddleware, async (req, res) => {
         if (fundraiser) {
             fundraiser.currentAmount -= donation.amount;
             await fundraiser.save();
+        }
+
+        res.status(200).json({ message: 'Donation deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting donation', error });
     }
 });
 
