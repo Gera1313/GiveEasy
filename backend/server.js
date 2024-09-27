@@ -225,9 +225,13 @@ app.delete('/api/donations/:donationId', authMiddleware, async (req, res) => {
             return res.status(404).json({ message: 'Donation not found' });
         }
 
-        
+        // Updates the fundraiser's currentAmount after deleting
+        const fundraiser = await Fundraiser.findById(donation.fundraiser);
+        if (fundraiser) {
+            fundraiser.currentAmount -= donation.amount;
+            await fundraiser.save();
     }
-})
+});
 
 // Starts the server
 app.listen(PORT, () => {
