@@ -20,7 +20,7 @@ A platform where users can create fundraisers for charitable causes, and donors 
 ### Features
 
 - User authentication for fundraiser creators and donors.
-- GraphQL for managing fundraisers and donations.
+- GraphQL for managing fundraisers and donations. REST API? 
 - Integration with Stripe for donations.
 - Admin panel to review and approve fundraisers. (maybe)
 - Responsive UI to allow users to easily browse fundraisers.
