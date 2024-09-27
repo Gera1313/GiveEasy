@@ -149,7 +149,34 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
 });
 
 // This endpoint will allow users to make a donation to a specific fundraiser:
-app.post('/api/donations', authMiddleware, )
+app.post('/api/donations', authMiddleware, async (req, res) => {
+    const { amount, donorName, fundraiserId } = req.body;
+
+    try {
+        const fundraiser = await Fundraiser.findById(fundraiserId);
+        if (!fundraiser) {
+            return res.status(404).json({ message: 'Fundraiser not found' });
+        }
+
+        const donation = new Donation({
+            amount,
+            donorName,
+            fundraiser: fundraiserId,
+        });
+
+        // Save donation to database
+        await donation.save();
+
+        // Update fundraiser's currentAmount
+        fundraiser.currentAmount += amount;
+        await fundraiser.save();
+
+        res.status(201).json({ message: 'Donation successful', donation });
+    } catch (error) {
+        res.status(500).json({ message: 'Error processing donation', error });
+    }
+});
+
 
 // Starts the server
 app.listen(PORT, () => {
