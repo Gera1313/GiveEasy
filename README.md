@@ -119,7 +119,4 @@ You can email me
 
 ## Notes
 
-Done: 
-1. Register users.
-2. Log in users and generate a JWT token.
-3. Protect specific routes (like /api/protected) using JWT authentication.
+Remove GraphQL and graphql-express if not using it. 
