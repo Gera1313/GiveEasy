@@ -118,5 +118,3 @@ You can email me
 [Deployed Site]()
 
 ## Notes
-
-Remove GraphQL and graphql-express if not using it. 
