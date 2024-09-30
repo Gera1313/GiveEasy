@@ -144,7 +144,16 @@ app.get('/api/fundraisers/:id', async (req, res) => {
 });
 
 // UPDATE a fundraiser
-app.put('/api/fundraisers/:id', authMiddleware, async (req, res) => {
+app.put('/api/fundraisers/:id', authMiddleware, [
+    body('title').optional().isLength({ min: 3 }).withMessage('Title must be at least 3 characters long'),
+    body('description').optional().isLength({ min: 10 }).withMessage('Description must be at least 10 characters long'),
+    body('goalAmount').optional().isFloat({ gt: 0 }).withMessage('Goal amount must be greater than 0'),
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { title, description, goalAmount } = req.body;
 
     try {
