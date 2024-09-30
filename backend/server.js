@@ -160,9 +160,11 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
 
 // This endpoint will allow users to make a donation to a specific fundraiser:
 app.post('/api/donations', [
+    body('amount').isNumeric().withMessage('Amount must be a number'),
+    body('donorName').notEmpty().withMessage('Donor name is required'),
+    body('fundraiserId').isMongoId().withMessage('Invalid fundraiser ID'),
+], authMiddleware, async (req, res) => {
 
-] authMiddleware, async (req, res) => {
-    
     const { amount, donorName, fundraiserId } = req.body;
 
     try {
