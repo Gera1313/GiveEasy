@@ -288,7 +288,15 @@ app.put('/api/donations/:donationId', [
 });
 
 // This endpoint allows users to delete a donation
-app.delete('/api/donations/:donationId', authMiddleware, async (req, res) => {
+app.delete('/api/donations/:donationId', [
+    // Validate donationId as a valid MongoDB ObjectId
+    param('donationId').isMongoId().withMessage('Invalid donation ID'),
+], authMiddleware, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    
     const { donationId } = req.params;
 
     try {
