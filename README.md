@@ -116,3 +116,5 @@ You can email me
 [Deployed Site]()
 
 ## Notes
+
+I added .isMongoId() to some existing routes. Re-test the routes in Insomnia at the end of the project. 
