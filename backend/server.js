@@ -59,7 +59,7 @@ app.post('/api/register', [
 // route for logins
 app.post('/api/login', [
     body('username').notEmpty().withMessage('Username is required'),
-    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -252,7 +252,21 @@ app.get('/api/donations', authMiddleware, async (req, res) => {
 });
 
 // This route allows users to update a donation (if donor wants to increase their donation amount)
-app.put('/api/donations/:donationId', authMiddleware, async (req, res) => {
+app.put('/api/donations/:donationId', [
+    // Validate donationId as a valid MongoDB ObjectId
+    param('donationId').isMongoId().withMessage('Invalid donation ID'),
+
+    // Optional: Validate amount only if it's provided
+    body('amount').optional().isNumeric().withMessage('Amount must be a number'),
+
+    // Optional: Validate donorName only if it's provided
+    body('donorName').optional().isString().withMessage('Donor name must be an alphabetical name'),
+], authMiddleware, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { donationId } = req.params;
     const { amount, donorName } = req.body;
 
