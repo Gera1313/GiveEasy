@@ -131,7 +131,9 @@ app.get('/api/fundraisers', async (req, res) => {
 });
 
 // GET 1 fundraiser by ID
-app.get('/api/fundraisers/:id', async (req, res) => {
+app.get('/api/fundraisers/:id', [
+    param('id').isMongoId().withMessage('Invalid fundraiser ID'),
+], async (req, res) => {
     try {
         const fundraiser = await Fundraiser.findById(req.params.id);
         if (!fundraiser) {
@@ -145,6 +147,7 @@ app.get('/api/fundraisers/:id', async (req, res) => {
 
 // UPDATE a fundraiser
 app.put('/api/fundraisers/:id', authMiddleware, [
+    param('id').isMongoId().withMessage('Invalid fundraiser ID'),
     body('title').notEmpty().withMessage('Title is required').isLength({ min: 3 }).withMessage('Title must be at least 3 characters long'),
     body('description').notEmpty().withMessage('Description is required').isLength({ min: 10 }).withMessage('Description must be at least 10 characters long'),
     body('goalAmount').notEmpty().withMessage('Goal amount is required').isFloat({ gt: 0 }).withMessage('Goal amount must be greater than 0'),
@@ -172,7 +175,9 @@ app.put('/api/fundraisers/:id', authMiddleware, [
 });
 
 // DELETE a fundraiser
-app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
+app.delete('/api/fundraisers/:id', authMiddleware, [
+    param('id').isMongoId().withMessage('Invalid fundraiser ID'),
+], async (req, res) => {
     try {
         const deletedFundraiser = await Fundraiser.findByIdAndDelete(req.params.id);
         if (!deletedFundraiser) {
