@@ -159,7 +159,10 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
 });
 
 // This endpoint will allow users to make a donation to a specific fundraiser:
-app.post('/api/donations', authMiddleware, async (req, res) => {
+app.post('/api/donations', [
+
+] authMiddleware, async (req, res) => {
+    
     const { amount, donorName, fundraiserId } = req.body;
 
     try {
