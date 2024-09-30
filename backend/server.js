@@ -270,6 +270,12 @@ app.delete('/api/donations/:donationId', authMiddleware, async (req, res) => {
     }
 });
 
+// Centralized error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ message: 'Something went wrong!', error: err.message });
+});
+
 // Starts the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
