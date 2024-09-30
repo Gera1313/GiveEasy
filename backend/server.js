@@ -164,6 +164,10 @@ app.post('/api/donations', [
     body('donorName').notEmpty().withMessage('Donor name is required'),
     body('fundraiserId').isMongoId().withMessage('Invalid fundraiser ID'),
 ], authMiddleware, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     const { amount, donorName, fundraiserId } = req.body;
 
