@@ -90,8 +90,6 @@ Nodemon: For automatically restarting my server during development.
 Concurrently: To run both backend and frontend servers simultaneously.
 
 ESLint: For linting and code quality checks.
-
-dotenv: for using .env variables
 ```
 
 ### Authentication & Payments

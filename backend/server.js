@@ -7,7 +7,7 @@ const User = require('./models/User');
 const authMiddleware = require('./auth');
 const Fundraiser = require('./models/Fundraiser');
 const Donation = require('./models/Donations'); 
-const { body, validationResult } = require('express-validator');
+const { body, validationResult, param } = require('express-validator');
 require('dotenv').config();
 
 const app = express();
@@ -145,9 +145,9 @@ app.get('/api/fundraisers/:id', async (req, res) => {
 
 // UPDATE a fundraiser
 app.put('/api/fundraisers/:id', authMiddleware, [
-    body('title').optional().isLength({ min: 3 }).withMessage('Title must be at least 3 characters long'),
-    body('description').optional().isLength({ min: 10 }).withMessage('Description must be at least 10 characters long'),
-    body('goalAmount').optional().isFloat({ gt: 0 }).withMessage('Goal amount must be greater than 0'),
+    body('title').notEmpty().withMessage('Title is required').isLength({ min: 3 }).withMessage('Title must be at least 3 characters long'),
+    body('description').notEmpty().withMessage('Description is required').isLength({ min: 10 }).withMessage('Description must be at least 10 characters long'),
+    body('goalAmount').notEmpty().withMessage('Goal amount is required').isFloat({ gt: 0 }).withMessage('Goal amount must be greater than 0'),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -185,11 +185,11 @@ app.delete('/api/fundraisers/:id', authMiddleware, async (req, res) => {
 });
 
 // This endpoint will allow users to make a donation to a specific fundraiser:
-app.post('/api/donations', [
+app.post('/api/donations', authMiddleware, [
     body('amount').isNumeric().withMessage('Amount must be a number'),
     body('donorName').notEmpty().withMessage('Donor name is required'),
     body('fundraiserId').isMongoId().withMessage('Invalid fundraiser ID'),
-], authMiddleware, async (req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -223,10 +223,10 @@ app.post('/api/donations', [
 });
 
 // This will return all donations related to a specific fundraiser: 
-app.get('/api/fundraisers/:fundraiserId/donations', [
+app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, [
     // Validate fundraiserId as a valid MongoDB ObjectId
     param('fundraiserId').isMongoId().withMessage('Invalid fundraiser ID'),
-], authMiddleware, async (req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -260,7 +260,7 @@ app.get('/api/donations', authMiddleware, async (req, res) => {
 });
 
 // This route allows users to update a donation (if donor wants to increase their donation amount)
-app.put('/api/donations/:donationId', [
+app.put('/api/donations/:donationId', authMiddleware, [
     // Validate donationId as a valid MongoDB ObjectId
     param('donationId').isMongoId().withMessage('Invalid donation ID'),
 
@@ -269,7 +269,7 @@ app.put('/api/donations/:donationId', [
 
     // Optional: Validate donorName only if it's provided
     body('donorName').optional().isString().withMessage('Donor name must be an alphabetical name'),
-], authMiddleware, async (req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -296,10 +296,10 @@ app.put('/api/donations/:donationId', [
 });
 
 // This endpoint allows users to delete a donation
-app.delete('/api/donations/:donationId', [
+app.delete('/api/donations/:donationId', authMiddleware, [
     // Validate donationId as a valid MongoDB ObjectId
     param('donationId').isMongoId().withMessage('Invalid donation ID'),
-], authMiddleware, async (req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
