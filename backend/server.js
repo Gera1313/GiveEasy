@@ -7,6 +7,7 @@ const User = require('./models/User');
 const authMiddleware = require('./auth');
 const Fundraiser = require('./models/Fundraiser');
 const Donation = require('./models/Donations'); 
+const { body, validationResult } = require('express-validator');
 require('dotenv').config();
 
 const app = express();
