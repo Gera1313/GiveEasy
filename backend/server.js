@@ -223,7 +223,15 @@ app.post('/api/donations', [
 });
 
 // This will return all donations related to a specific fundraiser: 
-app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, async (req, res) => {
+app.get('/api/fundraisers/:fundraiserId/donations', [
+    // Validate fundraiserId as a valid MongoDB ObjectId
+    param('fundraiserId').isMongoId().withMessage('Invalid fundraiser ID'),
+], authMiddleware, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    
     const { fundraiserId } = req.params;
 
     try {
