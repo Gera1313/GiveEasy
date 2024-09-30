@@ -57,7 +57,15 @@ app.post('/api/register', [
 });
 
 // route for logins
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', [
+    body('username').notEmpty().withMessage('Username is required'),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, password } = req.body;
 
     try {
