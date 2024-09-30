@@ -264,11 +264,11 @@ app.put('/api/donations/:donationId', authMiddleware, [
     // Validate donationId as a valid MongoDB ObjectId
     param('donationId').isMongoId().withMessage('Invalid donation ID'),
 
-    // Optional: Validate amount only if it's provided
-    body('amount').optional().isNumeric().withMessage('Amount must be a number'),
+    // Make amount required and validate it
+    body('amount').isNumeric().withMessage('Amount must be a number'),  // Remove .optional() to make it required
 
     // Optional: Validate donorName only if it's provided
-    body('donorName').optional().isString().withMessage('Donor name must be an alphabetical name'),
+    body('donorName').isString().withMessage('Donor name must be an alphabetical name'),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
