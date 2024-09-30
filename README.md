@@ -59,9 +59,9 @@ Express: for setting up my server.
 
 Mongoose: To interact with my MongoDB database using models.
 
-<!-- Graphql: For handling GraphQL queries and mutations. -->
+<!-- Graphql: For handling GraphQL queries and mutations? -->
 
-<!-- Express-graphql: For handling GraphQL queries and mutations. -->
+<!-- Express-graphql: For handling GraphQL queries and mutations? -->
 
 Jsonwebtoken: For user authentication.
 
@@ -76,7 +76,7 @@ Dotenv: To store sensitive data like API keys and secret tokens in environment v
 ```md
 React: The framework for building my front-end.
 
-Apollo Client: To interact with my GraphQL API on the frontend.
+<!-- Apollo Client: To interact with my GraphQL API on the frontend? -->
 
 JWT Decode: To handle decoding JSON web tokens on the client side.
 
