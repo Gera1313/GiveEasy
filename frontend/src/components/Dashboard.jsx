@@ -1,4 +1,4 @@
-// src/components/Home.jsx
+// src/components/Dashboard.jsx
 const Dashboard = () => {
     return <h1>Welcome to GiveEasy!</h1>;
   };

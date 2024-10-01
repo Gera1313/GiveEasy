@@ -1,4 +1,4 @@
-// src/components/Home.jsx
+// src/components/Login.jsx
 const Login = () => {
     return <h1>Welcome to GiveEasy!</h1>;
   };
