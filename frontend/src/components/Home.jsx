@@ -3,6 +3,13 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Home = () => {
+  const navigate = useNavigate(); 
+  const [username, setUsername] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const [error, setError] = useState(""); 
+}
+
+const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <h1 className="text-4xl font-bold text-blue-600 mb-6">Welcome to GiveEasy!</h1>
