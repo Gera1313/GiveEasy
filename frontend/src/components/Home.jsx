@@ -22,7 +22,7 @@ const Home = () => {
         setFetchError("");
       } catch (error) {
         console.error("Error fetching fundraisers:", error);
-        setFetchError("Failed to load fundraisers. Please try again later."); 
+        setFetchError("Failed to load fundraisers. Please try again later.");
       }
     };
 
@@ -67,10 +67,10 @@ const Home = () => {
         className="mt-2 p-2 bg-blue-600 text-white rounded-lg"
       />
 
-{/* Displays error message if login fails */}
+      {/* Displays error message if login fails */}
       {error && <p className="text-red-500">{error}</p>}
 
-{/* Login and Register buttons */}
+      {/* Login and Register buttons */}
       <div className="flex space-x-4 mt-4">
         <button
           className="px-4 py-2 bg-blue-600 text-white rounded-lg"
@@ -85,29 +85,26 @@ const Home = () => {
         </Link>
       </div>
 
-    {/* Active Fundraisers section */}
-    <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+      {/* Active Fundraisers section */}
+      <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
 
-    {/* Display error message if fetching fundraisers failed */}
-    {fetchError && <p className="text-red-500">{fetchError}</p>}
+      {/* Display error message if fetching fundraisers failed */}
+      {fetchError && <p className="text-red-500">{fetchError}</p>}
 
-    <div className="mt-4">
-      {!fetchError && fundraisers.length > 0 ? (
-        fundraisers.map((fundraiser) => (
-          <div key={fundraiser._id} className="p-4 border-b">
-            <h3 className="text-xl">{fundraiser.title}</h3>
-            <p>{fundraiser.description}</p>
-            <p>Current Total: ${fundraiser.currentAmount}</p>
-            <p>Goal: ${fundraiser.goalAmount}</p>
-          </div>
-        ))
-      ) : (
-        // Message when no fundraisers are available
-        !fetchError && <p>No active fundraisers at this time.</p>
-      )}
+      <div className="mt-4">
+        {!fetchError && fundraisers.length > 0
+          ? fundraisers.map((fundraiser) => (
+              <div key={fundraiser._id} className="p-4 border-b">
+                <h3 className="text-xl">{fundraiser.title}</h3>
+                <p>{fundraiser.description}</p>
+                <p>Current Total: ${fundraiser.currentAmount}</p>
+                <p>Goal: ${fundraiser.goalAmount}</p>
+              </div>
+            ))
+          : !fetchError && <p>No active fundraisers at this time.</p>}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Home;
