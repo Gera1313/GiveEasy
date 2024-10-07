@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// State variables for username, email, password, and errors. 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -9,8 +10,10 @@ const Register = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Function to handle user registration. 
   const handleRegister = async () => {
     try {
+      // POST request to register the user. 
       const response = await axios.post("http://localhost:5001/api/register", { username, email, password });
       console.log("Server response:", response.data);
       setError(null);
@@ -22,6 +25,7 @@ const Register = () => {
     }
   };
 
+  // Main return statement of the Register component, rendering the registration form. 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-green-100">
       <h1 className="text-2xl font-bold text-green-800">
