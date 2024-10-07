@@ -10,6 +10,20 @@ const Home = () => {
   const [error, setError] = useState("");
   const [fundraisers, setFundraisers] = useState([]);
 
+  // Fetch fundraisers when component mounts
+  useEffect(() => {
+    const fetchFundraisers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/api/fundraisers");
+        setFundraisers(response.data);
+      } catch (error) {
+        console.error("Error fetching fundraisers:", error);
+      }
+    };
+
+    fetchFundraisers();
+  }, []);
+
   // Function to handle the login process. 
   const handleLogin = async () => {
     try {
@@ -35,6 +49,18 @@ const Home = () => {
         <Link to="/register">
           <button className="px-4 py-2 bg-green-600 text-white rounded-lg">Register</button>
         </Link>
+      </div>
+
+      <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+      <div className="mt-4">
+        {fundraisers.map((fundraiser) => (
+          <div key={fundraiser._id} className="p-4 border-b">
+            <h3 className="text-xl">{fundraiser.title}</h3>
+            <p>{fundraiser.description}</p>
+            <p>Current Total: ${fundraiser.currentTotal}</p>
+            <p>Goal: ${fundraiser.goal}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
