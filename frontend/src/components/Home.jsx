@@ -10,7 +10,7 @@ const Home = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/login', { username, password });
+      const response = await axios.post('http://localhost:5001/api/login', { username, password });
       navigate('/dashboard');
     } catch (err) {
       setError("Login failed. Please check your credentials.");

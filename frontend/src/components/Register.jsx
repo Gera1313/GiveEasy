@@ -9,7 +9,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      await axios.post("/api/register", { username, email, password });
+      await axios.post("http://localhost:5001/api/register", { username, email, password });
       // Redirect to login or dashboard after successful registration
       console.log("User registered:", { username, email, password });
     } catch (err) {
