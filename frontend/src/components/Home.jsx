@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react'; // State for holding fundraisers, Effect to fetch them.
-import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"; // State for holding fundraisers, Effect to fetch them.
+import axios from "axios";
 
 // Initialize nagivation and state variables.
 const Home = () => {
@@ -14,7 +14,9 @@ const Home = () => {
   useEffect(() => {
     const fetchFundraisers = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/fundraisers");
+        const response = await axios.get(
+          "http://localhost:5001/api/fundraisers"
+        );
         setFundraisers(response.data);
       } catch (error) {
         console.error("Error fetching fundraisers:", error);
@@ -24,43 +26,71 @@ const Home = () => {
     fetchFundraisers();
   }, []);
 
-  // Function to handle the login process. 
+  // Function to handle the login process.
   const handleLogin = async () => {
     try {
       // POST request to the login API with username/password.
-      const response = await axios.post('http://localhost:5001/api/login', { username, password });
-      navigate('/dashboard');
+      const response = await axios.post("http://localhost:5001/api/login", {
+        username,
+        password,
+      });
+      navigate("/dashboard");
     } catch (err) {
       setError("Login failed. Please check your credentials.");
     }
   };
 
-  // Main return statement of the Home component, rendering the login/register & Active Fundraisers interface. 
+  // Main return statement of the Home component, rendering the login/register & Active Fundraisers interface.
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">Welcome to GiveEasy!</h1>
-      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} className="mt-4 p-2 border border-gray-300 rounded-lg"/>
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="mt-2 p-2 bg-blue-600 text-white rounded-lg"/>
+      <h1 className="text-4xl font-bold text-blue-600 mb-6">
+        Welcome to GiveEasy!
+      </h1>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="mt-4 p-2 border border-gray-300 rounded-lg"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="mt-2 p-2 bg-blue-600 text-white rounded-lg"
+      />
 
       {error && <p className="text-red-500">{error}</p>}
 
       <div className="flex space-x-4 mt-4">
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg" onClick={handleLogin}>Login</button>
+        <button
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
         <Link to="/register">
-          <button className="px-4 py-2 bg-green-600 text-white rounded-lg">Register</button>
+          <button className="px-4 py-2 bg-green-600 text-white rounded-lg">
+            Register
+          </button>
         </Link>
       </div>
 
       <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
       <div className="mt-4">
-        {fundraisers.map((fundraiser) => (
-          <div key={fundraiser._id} className="p-4 border-b">
-            <h3 className="text-xl">{fundraiser.title}</h3>
-            <p>{fundraiser.description}</p>
-            <p>Current Total: ${fundraiser.currentTotal}</p>
-            <p>Goal: ${fundraiser.goal}</p>
-          </div>
-        ))}
+        {fundraisers.length > 0 ? (
+          fundraisers.map((fundraiser) => (
+            <div key={fundraiser._id} className="p-4 border-b">
+              <h3 className="text-xl">{fundraiser.title}</h3>
+              <p>{fundraiser.description}</p>
+              <p>Current Total: ${fundraiser.currentTotal}</p>
+              <p>Goal: ${fundraiser.goal}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500">No active fundraisers at this time.</p>
+        )}
       </div>
     </div>
   );
