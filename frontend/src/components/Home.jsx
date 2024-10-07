@@ -46,6 +46,10 @@ const Home = () => {
   // Main return statement of the Home component, rendering the login/register & Active Fundraisers interface.
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      {/* Container for the login and fundraisers, using flexbox to align them side by side */}
+    <div className="flex flex-row justify-between w-10/12">
+          {/* Left section for the login and register */}
+          <div className="w-1/2 flex flex-col items-center">
       <h1 className="text-4xl font-bold text-blue-600 mb-6">
         Welcome to GiveEasy!
       </h1>
@@ -56,7 +60,7 @@ const Home = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="mt-4 p-2 border border-gray-300 rounded-lg"
+        className="mt-4 p-2 border border-gray-300 rounded-lg w-3/4"
       />
       {/* Password input field */}
       <input
@@ -64,7 +68,7 @@ const Home = () => {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="mt-2 p-2 bg-blue-600 text-white rounded-lg"
+        className="mt-2 p-2 bg-blue-600 text-white rounded-lg w-3/4"
       />
 
       {/* Displays error message if login fails */}
@@ -84,14 +88,16 @@ const Home = () => {
           </button>
         </Link>
       </div>
+      </div>
 
       {/* Active Fundraisers section */}
-      <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+      <div className="w-1/2 p-4 bg-white rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4">Active Fundraisers</h2>
 
       {/* Display error message if fetching fundraisers failed */}
       {fetchError && <p className="text-red-500">{fetchError}</p>}
 
-      <div className="mt-4">
+      <div>
         {!fetchError && fundraisers.length > 0
           ? fundraisers.map((fundraiser) => (
               <div key={fundraiser._id} className="p-4 border-b">
@@ -103,6 +109,8 @@ const Home = () => {
             ))
           : !fetchError && <p>No active fundraisers at this time.</p>}
       </div>
+    </div>
+    </div>
     </div>
   );
 };
