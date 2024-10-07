@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -6,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -14,6 +16,7 @@ const Register = () => {
       setError(null);
       // Redirect to login or dashboard after successful registration
       console.log("User registered:", { username, email, password });
+      navigate("/dashboard");
     } catch (err) {
       setError("Registration failed. Please try again.");
     }
