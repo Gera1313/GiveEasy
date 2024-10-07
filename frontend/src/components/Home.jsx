@@ -47,70 +47,71 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       {/* Container for the login and fundraisers, using flexbox to align them side by side */}
-    <div className="flex flex-row justify-between w-10/12">
-          {/* Left section for the login and register */}
-          <div className="w-1/2 flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">
-        Welcome to GiveEasy!
-      </h1>
+      <div className="flex flex-row justify-between w-10/12">
 
-      {/* Username input field */}
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="mt-4 p-2 border border-gray-300 rounded-lg w-3/4"
-      />
-      {/* Password input field */}
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="mt-2 p-2 bg-blue-600 text-white rounded-lg w-3/4"
-      />
+        {/* Left section for the login and register */}
+        <div className="w-1/2 flex flex-col items-center">
+          <h1 className="text-4xl font-bold text-blue-600 mb-6">
+            Welcome to GiveEasy!
+          </h1>
 
-      {/* Displays error message if login fails */}
-      {error && <p className="text-red-500">{error}</p>}
+          {/* Username input field */}
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="mt-4 p-2 border border-gray-300 rounded-lg w-3/4"
+          />
+          {/* Password input field */}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-2 p-2 bg-blue-600 text-white rounded-lg w-3/4"
+          />
 
-      {/* Login and Register buttons */}
-      <div className="flex space-x-4 mt-4">
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-          onClick={handleLogin}
-        >
-          Login
-        </button>
-        <Link to="/register">
-          <button className="px-4 py-2 bg-green-600 text-white rounded-lg">
-            Register
-          </button>
-        </Link>
+          {/* Displays error message if login fails */}
+          {error && <p className="text-red-500">{error}</p>}
+
+          {/* Login and Register buttons */}
+          <div className="flex space-x-4 mt-4">
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+              onClick={handleLogin}
+            >
+              Login
+            </button>
+            <Link to="/register">
+              <button className="px-4 py-2 bg-green-600 text-white rounded-lg">
+                Register
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Right side - Active Fundraisers section */}
+        <div className="w-1/2 p-4 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4">Active Fundraisers</h2>
+
+          {/* Display error message if fetching fundraisers failed */}
+          {fetchError && <p className="text-red-500">{fetchError}</p>}
+
+          <div>
+            {!fetchError && fundraisers.length > 0
+              ? fundraisers.map((fundraiser) => (
+                  <div key={fundraiser._id} className="p-4 border-b">
+                    <h3 className="text-xl">{fundraiser.title}</h3>
+                    <p>{fundraiser.description}</p>
+                    <p>Current Total: ${fundraiser.currentAmount}</p>
+                    <p>Goal: ${fundraiser.goalAmount}</p>
+                  </div>
+                ))
+              : !fetchError && <p>No active fundraisers at this time.</p>}
+          </div>
+        </div>
       </div>
-      </div>
-
-      {/* Active Fundraisers section */}
-      <div className="w-1/2 p-4 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Active Fundraisers</h2>
-
-      {/* Display error message if fetching fundraisers failed */}
-      {fetchError && <p className="text-red-500">{fetchError}</p>}
-
-      <div>
-        {!fetchError && fundraisers.length > 0
-          ? fundraisers.map((fundraiser) => (
-              <div key={fundraiser._id} className="p-4 border-b">
-                <h3 className="text-xl">{fundraiser.title}</h3>
-                <p>{fundraiser.description}</p>
-                <p>Current Total: ${fundraiser.currentAmount}</p>
-                <p>Goal: ${fundraiser.goalAmount}</p>
-              </div>
-            ))
-          : !fetchError && <p>No active fundraisers at this time.</p>}
-      </div>
-    </div>
-    </div>
     </div>
   );
 };
