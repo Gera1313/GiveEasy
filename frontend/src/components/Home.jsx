@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // State for holding fundraisers, Effect to fetch them.
 import axios from 'axios';
 
 // Initialize nagivation and state variables.
@@ -8,6 +8,7 @@ const Home = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [fundraisers, setFundraisers] = useState([]);
 
   // Function to handle the login process. 
   const handleLogin = async () => {
