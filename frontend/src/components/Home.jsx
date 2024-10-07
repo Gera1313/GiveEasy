@@ -87,8 +87,12 @@ const Home = () => {
 
     {/* Active Fundraisers section */}
     <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+
+    {/* Display error message if fetching fundraisers failed */}
+    {fetchError && <p className="text-red-500">{fetchError}</p>}
+
     <div className="mt-4">
-      {fundraisers.length > 0 ? (
+      {!fetchError && fundraisers.length > 0 ? (
         fundraisers.map((fundraiser) => (
           <div key={fundraiser._id} className="p-4 border-b">
             <h3 className="text-xl">{fundraiser.title}</h3>
