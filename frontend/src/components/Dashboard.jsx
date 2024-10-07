@@ -10,7 +10,9 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchFundraisers = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/fundraisers");
+        const response = await axios.get(
+          "http://localhost:5001/api/fundraisers"
+        );
         setFundraisers(response.data);
         setFetchError("");
       } catch (error) {
@@ -25,9 +27,15 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
       <h1 className="text-3xl font-semibold text-green-600">Dashboard</h1>
+
+      {/* Link to create a new fundraiser */}
+      <Link to="/create-fundraiser">
+        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">
+          Create New Fundraiser
+        </button>
+      </Link>
     </div>
   );
 };
 
 export default Dashboard;
-  
