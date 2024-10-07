@@ -34,6 +34,32 @@ const Dashboard = () => {
           Create New Fundraiser
         </button>
       </Link>
+
+      {/* Active Fundraisers section */}
+      <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+
+      {/* Display error message if fetching fundraisers failed */}
+      {fetchError && <p className="text-red-500">{fetchError}</p>}
+
+      <div className="mt-4">
+        {!fetchError && fundraisers.length > 0 ? (
+          fundraisers.map((fundraiser) => (
+            <div key={fundraiser._id} className="p-4 border-b">
+              <h3 className="text-xl">{fundraiser.title}</h3>
+              <p>{fundraiser.description}</p>
+              <p>Current Total: ${fundraiser.currentAmount}</p>
+              <p>Goal: ${fundraiser.goalAmount}</p>
+              <Link to={`/donate/${fundraiser._id}`}>
+                <button className="mt-2 px-4 py-2 bg-green-600 text-white rounded-lg">
+                  Donate
+                </button>
+              </Link>
+            </div>
+          ))
+        ) : (
+          !fetchError && <p>No active fundraisers at this time.</p>
+        )}
+      </div>
     </div>
   );
 };
