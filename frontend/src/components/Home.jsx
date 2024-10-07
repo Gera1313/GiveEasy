@@ -2,14 +2,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
+// Initialize nagivation and state variables.
 const Home = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  // Function to handle the login process. 
   const handleLogin = async () => {
     try {
+      // POST request to the login API with username/password.
       const response = await axios.post('http://localhost:5001/api/login', { username, password });
       navigate('/dashboard');
     } catch (err) {

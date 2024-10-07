@@ -14,8 +14,8 @@ const Register = () => {
       const response = await axios.post("http://localhost:5001/api/register", { username, email, password });
       console.log("Server response:", response.data);
       setError(null);
-      // Redirect to login or dashboard after successful registration
       console.log("User registered:", { username, email, password });
+      // Redirect to login or dashboard after successful registration
       navigate("/dashboard");
     } catch (err) {
       setError("Registration failed. Please try again.");
