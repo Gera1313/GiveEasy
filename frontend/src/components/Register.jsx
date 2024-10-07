@@ -3,14 +3,15 @@ import axios from "axios";
 
 const Register = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleRegister = async () => {
     try {
-      await axios.post('/api/register', { username, password });
+      await axios.post("/api/register", { username, email, password });
       // Redirect to login or dashboard after successful registration
-      console.log("User registered:", { username, password });
+      console.log("User registered:", { username, email, password });
     } catch (err) {
       setError("Registration failed. Please try again.");
     }
@@ -26,6 +27,13 @@ const Register = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        className="mt-4 p-2 border border-gray-300 rounded-lg"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className="mt-4 p-2 border border-gray-300 rounded-lg"
       />
       <input

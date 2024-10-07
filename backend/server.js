@@ -35,7 +35,7 @@ app.get('/api/test', (req, res) => {
 // Registered users route with validation
 app.post('/api/register', [
     body('username').notEmpty().withMessage('Username is required'),
-    body('email').isEmail().withMessage('Email is invalid'),
+    body('email').optional().isEmail().withMessage('Email is invalid'),
     body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
 ], async (req, res) => {
     const errors = validationResult(req);
