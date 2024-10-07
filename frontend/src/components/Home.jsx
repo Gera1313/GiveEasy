@@ -9,6 +9,7 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [fundraisers, setFundraisers] = useState([]);
+  const [fetchError, setFetchError] = useState("");
 
   // Fetch fundraisers when component mounts
   useEffect(() => {
@@ -18,8 +19,10 @@ const Home = () => {
           "http://localhost:5001/api/fundraisers"
         );
         setFundraisers(response.data);
+        setFetchError("");
       } catch (error) {
         console.error("Error fetching fundraisers:", error);
+        setFetchError("Failed to load fundraisers. Please try again later."); 
       }
     };
 
@@ -96,7 +99,7 @@ const Home = () => {
         ))
       ) : (
         // Message when no fundraisers are available
-        <p>No active fundraisers at this time.</p>
+        !fetchError && <p>No active fundraisers at this time.</p>
       )}
     </div>
   </div>
