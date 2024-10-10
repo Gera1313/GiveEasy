@@ -49,7 +49,7 @@ const Dashboard = () => {
               <p>{fundraiser.description}</p>
               <p>Current Total: ${fundraiser.currentAmount}</p>
               <p>Goal: ${fundraiser.goalAmount}</p>
-              <Link to={`/donate/${fundraiser._id}`}>
+              <Link to={`/fundraisers/${fundraiser._id}/donate`}>
                 <button className="mt-2 px-4 py-2 bg-green-600 text-white rounded-lg">
                   Donate
                 </button>
