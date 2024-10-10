@@ -37,6 +37,10 @@ const Home = () => {
         username,
         password,
       });
+
+      // Store the JWT token in local storage
+      localStorage.setItem("token", response.data.token);
+      
       navigate("/dashboard");
     } catch (err) {
       setError("Login failed. Please check your credentials.");

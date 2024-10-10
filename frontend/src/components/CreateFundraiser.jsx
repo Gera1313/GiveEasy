@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -10,14 +10,6 @@ const CreateFundraiser = () => {
   const [goalAmount, setGoalAmount] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
-  // Check if the user is authenticated by checking the token
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login"); // Redirect to login if not authenticated
-    }
-  }, [navigate]);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
