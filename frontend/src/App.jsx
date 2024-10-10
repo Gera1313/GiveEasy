@@ -3,7 +3,7 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import CreateFundraiser from './components/CreateFundraiser';
-import Donate from './Donate';
+import Donate from './components/Donate';
 
 const App = () => {
   return (
