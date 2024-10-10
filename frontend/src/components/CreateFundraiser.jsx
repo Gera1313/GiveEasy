@@ -11,11 +11,21 @@ const CreateFundraiser = () => {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(""); 
 
+      // Check if the user is authenticated by checking the token
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login"); // Redirect to login if not authenticated
+    }
+  }, [navigate]);
+
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         setSuccess("");
+
+        const token = localStorage.getItem("token");
 
         // POST request to create a new fundraiser
         try {
@@ -23,7 +33,13 @@ const CreateFundraiser = () => {
               title,
               description,
               goalAmount,
-            });
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
             setSuccess(response.data.message);
             // Navigate back to the dashboard.
             navigate("/dashboard");
