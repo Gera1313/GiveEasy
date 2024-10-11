@@ -242,9 +242,21 @@ app.post('/api/create-payment-intent', authMiddleware, [
 
     try {
         // Converts amount to cents. Stripe works with smallest currency unit. 
-        
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: Math.round(amount * 100),
+            currency: 'usd',
+            automatic_payment_methods: { enabled: true },
+        });
+
+        // Sends client secret to the frontend
+        res.status(200).json({
+            clientSecret: paymentIntent.client_secret,
+        });
+    } catch (error) {
+        console.error('Error creating payment intent:', error);
+        res.status(500).json({ message: 'Error creating payment intent', error });
     }
-})
+});
 
 // This will return all donations related to a specific fundraiser: 
 app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, [
