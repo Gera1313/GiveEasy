@@ -8,9 +8,10 @@ const authMiddleware = require('./auth');
 const Fundraiser = require('./models/Fundraiser');
 const Donation = require('./models/Donations'); 
 const { body, validationResult, param } = require('express-validator');
-const Stripe = require('stripe');
-const stripe = Stripe('pk_test_51Q8huvRqsL96moUE5s74nxZqK4oXdlIZrUv85w9H1WeC0FPqkdEQVFQTYEdslUlV60I42BqamrD6tVFNhnO6JDfy00xlI2niqc');
 require('dotenv').config();
+
+// Initialize Stripe with the secret key
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -230,7 +231,7 @@ app.post('/api/donations', authMiddleware, [
 });
 
 // Endpoint for handling Stripe payments
-app.post('/api/create-payment-intent', authMiddleware, [
+app.post('/api/payments', authMiddleware, [
     body('amount').isNumeric().withMessage('Amount must be a number'),
 ], async (req, res) => {
     const errors = validationResult(req);
