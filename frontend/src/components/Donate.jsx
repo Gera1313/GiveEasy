@@ -30,7 +30,7 @@ const Donate = () => {
       const token = localStorage.getItem("token");
       // Step 1: Creates a payment intent on the server
       const { data: clientSecret } = await axios.post(
-        "http://localhost:5001/api/donations/create-payment-intent", // Adjust this URL maybe. 
+        "http://localhost:5001/api/donations/payments", // Adjust this URL maybe. 
         {
           amount: parseFloat(amount) * 100, 
           donorName,
