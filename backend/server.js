@@ -8,6 +8,8 @@ const authMiddleware = require('./auth');
 const Fundraiser = require('./models/Fundraiser');
 const Donation = require('./models/Donations'); 
 const { body, validationResult, param } = require('express-validator');
+const Stripe = require('stripe');
+const stripe = Stripe('pk_test_51Q8huvRqsL96moUE5s74nxZqK4oXdlIZrUv85w9H1WeC0FPqkdEQVFQTYEdslUlV60I42BqamrD6tVFNhnO6JDfy00xlI2niqc');
 require('dotenv').config();
 
 const app = express();
@@ -226,6 +228,23 @@ app.post('/api/donations', authMiddleware, [
         res.status(500).json({ message: 'Error processing donation', error });
     }
 });
+
+// Endpoint for handling Stripe payments
+app.post('/api/create-payment-intent', authMiddleware, [
+    body('amount').isNumeric().withMessage('Amount must be a number'),
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { amount } = req.body;
+
+    try {
+        // Converts amount to cents. Stripe works with smallest currency unit. 
+        
+    }
+})
 
 // This will return all donations related to a specific fundraiser: 
 app.get('/api/fundraisers/:fundraiserId/donations', authMiddleware, [
