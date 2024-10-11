@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 const Donate = () => {
   const { fundraiserId } = useParams();
+  const stripe = useStripe();
+  const elements = useElements();
+
+
   const [amount, setAmount] = useState("");
   const [donorName, setDonorName] = useState("");
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleDonate = async (e) => {
     e.preventDefault();
