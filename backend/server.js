@@ -241,14 +241,14 @@ app.post('/api/create-payment-intent', authMiddleware, [
     const { amount } = req.body;
 
     try {
-        // Converts amount to cents. Stripe works with smallest currency unit. 
+        // Convert amount to cents as Stripe works with the smallest currency unit
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(amount * 100),
             currency: 'usd',
             automatic_payment_methods: { enabled: true },
         });
 
-        // Sends client secret to the frontend
+        // Send the client secret to the frontend
         res.status(200).json({
             clientSecret: paymentIntent.client_secret,
         });
