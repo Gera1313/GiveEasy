@@ -20,12 +20,19 @@ const Donate = () => {
     setError(null);
     setSuccessMessage("");
 
+    if (!stripe || !elements) {
+        return; // stripe hasn't yet loaded
+    }
+
+    setIsProcessing(true); // Disables button to prevent multiple submissions
+
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:5001/api/donations",
+      // Step 1: Creates a payment intent on the server
+      const { data: clientSecret } = await axios.post(
+        "http://localhost:5001/api/donations/create-payment-intent", // Adjust this URL maybe. 
         {
-          amount: parseFloat(amount),
+          amount: parseFloat(amount) * 100, 
           donorName,
           fundraiserId,
         },
@@ -36,12 +43,27 @@ const Donate = () => {
         }
       );
 
-      setSuccessMessage(response.data.message);
-      // Clear input fields after successful donation
-      setAmount("");
-      setDonorName("");
+      // Step 2: Confirm the card payment
+      const cardElement = elements.getElement(CardElement);
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+        },
+      });
+
+      if (error) {
+        setError(error.message);
+        setIsProcessing(false);
+      } else if (paymentIntent.status === "succeeded") {
+        setSuccessMessage("Payment successful!");
+        // Clear input fields after successful donation
+        setAmount("");
+        setDonorName("");
+        setIsProcessing(false);
+      }
     } catch (error) {
       setError(error.response?.data?.message || "Error donating");
+      setIsProcessing(false);
     }
   };
 
