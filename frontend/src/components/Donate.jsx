@@ -106,7 +106,7 @@ const Donate = () => {
           type="submit"
           className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg"
         >
-          Donate
+          {isProcessing ? "Processing..." : "Donate"}
         </button>
       </form>
       {error && <p className="text-red-500 mt-4">{error}</p>}
