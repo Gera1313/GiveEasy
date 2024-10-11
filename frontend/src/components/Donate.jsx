@@ -30,7 +30,7 @@ const Donate = () => {
       const token = localStorage.getItem("token");
       // Step 1: Creates a payment intent on the server
       const { data: clientSecret } = await axios.post(
-        "http://localhost:5001/api/donations/payments", // Adjust this URL maybe. 
+        "http://localhost:5001/api/payments", // Adjust this URL maybe. 
         {
           amount: parseFloat(amount) * 100, 
           donorName,
@@ -43,28 +43,38 @@ const Donate = () => {
         }
       );
 
-      // Step 2: Confirm the card payment
-      const cardElement = elements.getElement(CardElement);
-      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-        },
-      });
+  // Step 2: Confirm the card payment
+  const cardElement = elements.getElement(CardElement);
+  const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+    payment_method: {
+      card: cardElement,
+      billing_details: {
+        name: donorName, // Optional: Include donor name in billing details
+      },
+    },
+  });
 
-      if (error) {
-        setError(error.message);
-        setIsProcessing(false);
-      } else if (paymentIntent.status === "succeeded") {
-        setSuccessMessage("Payment successful!");
-        // Clear input fields after successful donation
-        setAmount("");
-        setDonorName("");
-        setIsProcessing(false);
-      }
-    } catch (error) {
-      setError(error.response?.data?.message || "Error donating");
-      setIsProcessing(false);
-    }
+  if (stripeError) {
+    // Handle any errors that occur during confirmation
+    setError(stripeError.message);
+    setIsProcessing(false);
+  } else if (paymentIntent.status === "succeeded") {
+    // Payment was successful
+    setSuccessMessage("Payment successful! Thank you for your contribution.");
+    // Clear input fields after successful donation
+    setAmount("");
+    setDonorName("");
+    setIsProcessing(false);
+  } else {
+    // Handle other potential statuses (optional)
+    setError("Payment not successful, please try again.");
+    setIsProcessing(false);
+  }
+} catch (error) {
+  // Handle errors that may occur during API request
+  setError(error.response?.data?.message || "Error donating");
+  setIsProcessing(false);
+}
   };
 
   return (
@@ -101,6 +111,12 @@ const Donate = () => {
             required
             className="border border-gray-300 rounded-lg p-2 w-full"
           />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">
+            Card Details:
+          </label>
+          <CardElement className="border border-gray-300 rounded-lg p-2 w-full" />
         </div>
         <button
           type="submit"
