@@ -30,7 +30,7 @@ const Donate = () => {
       const token = localStorage.getItem("token");
       // Step 1: Creates a payment intent on the server
       const { data: clientSecret } = await axios.post(
-        "http://localhost:5001/api/payments", // Adjust this URL maybe. 
+        "http://localhost:5001/api/payments", 
         {
           amount: parseFloat(amount) * 100, 
           donorName,
@@ -57,24 +57,26 @@ const Donate = () => {
   });
 
   if (stripeError) {
-    console.error('Stripe Error:', stripeError);
-    // Handle any errors that occur during confirmation
-    setError(stripeError.message);
-    setIsProcessing(false);
-  } else if (paymentIntent.status === "succeeded") {
-    // Payment was successful
-    setSuccessMessage("Payment successful! Thank you for your contribution.");
-    // Clear input fields after successful donation
-    setAmount("");
-    setDonorName("");
+    console.error('Stripe Error:', stripeError); // Log any errors returned from Stripe
+    setError(stripeError.message); // Handle any errors that occur during confirmation
     setIsProcessing(false);
   } else {
-    // Handle other potential statuses (optional)
-    setError("Payment not successful, please try again.");
-    setIsProcessing(false);
+    console.log('Payment Intent:', paymentIntent); // Log the payment intent object
+
+    if (paymentIntent.status === "succeeded") {
+      setSuccessMessage("Payment successful! Thank you for your contribution.");
+      setAmount("");
+      setDonorName("");
+      setIsProcessing(false);
+    } else {
+      // If payment wasn't successful, log the status for debugging
+      console.log('Payment Status:', paymentIntent.status); // Log payment status for non-success
+      setError("Payment not successful, please try again.");
+      setIsProcessing(false);
+    }
   }
 } catch (error) {
-  // Handle errors that may occur during API request
+  console.error('Error during API request:', error); // Log the API request error
   setError(error.response?.data?.message || "Error donating");
   setIsProcessing(false);
 }
