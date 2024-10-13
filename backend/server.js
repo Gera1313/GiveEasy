@@ -160,7 +160,7 @@ app.put('/api/fundraisers/:id', authMiddleware, [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, description, goalAmount } = req.body;
+    // const { title, description, goalAmount, } = req.body;
 
     try {
         const updatedFundraiser = await Fundraiser.findByIdAndUpdate(

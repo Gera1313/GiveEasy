@@ -43,8 +43,6 @@ const Donate = () => {
         }
       )).data;      
 
-      console.log('Client Secret:', clientSecret);
-
   // Step 2: Confirm the card payment
   const cardElement = elements.getElement(CardElement);
   const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
@@ -61,8 +59,6 @@ const Donate = () => {
     setError(stripeError.message); // Handle any errors that occur during confirmation
     setIsProcessing(false);
   } else {
-    console.log('Payment Intent:', paymentIntent); // Log the payment intent object
-
     if (paymentIntent.status === "succeeded") {
       setSuccessMessage("Payment successful! Thank you for your contribution.");
       setAmount("");
@@ -70,7 +66,6 @@ const Donate = () => {
       setIsProcessing(false);
     } else {
       // If payment wasn't successful, log the status for debugging
-      console.log('Payment Status:', paymentIntent.status); // Log payment status for non-success
       setError("Payment not successful, please try again.");
       setIsProcessing(false);
     }
