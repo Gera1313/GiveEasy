@@ -74,7 +74,7 @@ React: The framework for building my front-end.
 
 JWT Decode: To handle decoding JSON web tokens on the client side.
 
-Axios (maybe): For making HTTP requests (if I decide to use this over Apollo).
+Axios: For making HTTP requests.
 ```
 
 ### Development & Utilities
