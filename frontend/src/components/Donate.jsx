@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // ADDED useNav
+import { useParams, useNavigate } from "react-router-dom";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 
@@ -7,13 +7,13 @@ const Donate = () => {
   const { fundraiserId } = useParams();
   const stripe = useStripe();
   const elements = useElements();
-  const navigate = useNavigate(); // ADDED: Create navigate function
+  const navigate = useNavigate();
   const [amount, setAmount] = useState("");
   const [donorName, setDonorName] = useState("");
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [showButton, setShowButton] = useState(false); // ADDED: New state for button visibility
+  const [showButton, setShowButton] = useState(false);
 
   const handleDonate = async (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const Donate = () => {
   } else {
     if (paymentIntent.status === "succeeded") {
       setSuccessMessage("Payment successful! Thank you for your contribution.");
-      setShowButton(true); // ADDED: Show the button after a successful 
+      setShowButton(true);
       setAmount("");
       setDonorName("");
       setIsProcessing(false);
@@ -130,7 +130,7 @@ const Donate = () => {
       {successMessage && (
         <p className="text-green-500 mt-4">{successMessage}</p>
       )}
-      {/* ADDED: Conditionally render this button */}
+      {/* Conditionally render this button */}
       {showButton && (
   <button
     className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
