@@ -112,3 +112,6 @@ You can email me
 ## Notes
 
 Have reached MVP for now. 
+
+To do: 
+Update Current Total when making donation.
