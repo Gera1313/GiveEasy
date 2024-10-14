@@ -111,4 +111,4 @@ You can email me
 
 ## Notes
 
-I added .isMongoId() to some existing routes. Re-test the routes in Insomnia at the end of the project. 
+Have reached MVP for now. 
