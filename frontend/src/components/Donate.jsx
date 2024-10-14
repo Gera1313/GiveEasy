@@ -7,8 +7,6 @@ const Donate = () => {
   const { fundraiserId } = useParams();
   const stripe = useStripe();
   const elements = useElements();
-
-
   const [amount, setAmount] = useState("");
   const [donorName, setDonorName] = useState("");
   const [error, setError] = useState(null);
@@ -32,7 +30,7 @@ const Donate = () => {
       const { clientSecret } = (await axios.post(
         "http://localhost:5001/api/payments", 
         {
-          amount: parseFloat(amount) * 100, 
+          amount: parseFloat(amount) * 100,
           donorName,
           fundraiserId,
         },
@@ -41,7 +39,7 @@ const Donate = () => {
             Authorization: `Bearer ${token}`,
           },
         }
-      )).data;      
+      )).data;   
 
   // Step 2: Confirm the card payment
   const cardElement = elements.getElement(CardElement);
