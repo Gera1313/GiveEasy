@@ -94,7 +94,7 @@ const Donate = () => {
             value={donorName}
             onChange={(e) => setDonorName(e.target.value)}
             required
-            className="border border-gray-300 rounded-lg p-2 w-full"
+            className="border border-gray-300 rounded-lg p-2 w-80"
           />
         </div>
         <div className="mb-4">
@@ -107,14 +107,14 @@ const Donate = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             required
-            className="border border-gray-300 rounded-lg p-2 w-full"
+            className="border border-gray-300 rounded-lg p-2 w-80"
           />
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">
             Card Details:
           </label>
-          <CardElement className="border border-gray-300 rounded-lg p-2 w-full" />
+          <CardElement className="border border-gray-300 rounded-lg p-2 w-80" />
         </div>
         <button
           type="submit"
