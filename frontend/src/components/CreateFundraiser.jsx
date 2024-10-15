@@ -85,11 +85,11 @@ const CreateFundraiser = () => {
         </div>
 
         {/* Error and success messages */}
-        {error && <p className="text-red-500">{error}</p>}
-        {success && <p className="text-green-500">{success}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
+        {success && <p className="text-green-500 text-center">{success}</p>}
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+          className="w-full px-4 py-2 mt-4 bg-blue-600 text-white rounded-lg"
         >
           Create Fundraiser
         </button>
