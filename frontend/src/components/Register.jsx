@@ -37,25 +37,25 @@ const Register = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="mt-4 p-2 border border-gray-300 rounded-lg"
+        className="mt-4 p-2 border border-gray-300 rounded-lg w-full"
       />
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="mt-4 p-2 border border-gray-300 rounded-lg"
+        className="mt-4 p-2 border border-gray-300 rounded-lg w-full"
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="mt-2 p-2 border border-gray-300 rounded-lg"
+        className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
       />
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <button
-        className="mt-4 p-2 bg-green-600 text-white rounded-lg"
+        className="mt-4 p-2 bg-green-600 text-white rounded-lg w-full"
         onClick={handleRegister}
       >
         Register
