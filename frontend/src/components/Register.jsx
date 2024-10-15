@@ -27,8 +27,9 @@ const Register = () => {
 
   // Main return statement of the Register component, rendering the registration form. 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-green-100">
-      <h1 className="text-2xl font-bold text-green-800">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-green-100 p-4">
+      <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold text-green-800 mb-6 text-center">
         Register for GiveEasy!
       </h1>
       <input
@@ -59,6 +60,7 @@ const Register = () => {
       >
         Register
       </button>
+      </div>
     </div>
   );
 };
