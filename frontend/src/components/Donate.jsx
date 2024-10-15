@@ -79,13 +79,13 @@ const Donate = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
-      <h2 className="text-3xl font-semibold text-green-600 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+      <h2 className="text-3xl font-semibold text-green-600 mb-4 text-center">
         Donate to Fundraiser
       </h2>
       <form
         onSubmit={handleDonate}
-        className="bg-white p-6 rounded-lg shadow-md"
+        className="bg-white p-6 rounded-lg shadow-md w-full max-w-md" //check this later
       >
         <div className="mb-4">
           <label htmlFor="donorName" className="block text-gray-700 mb-2">
@@ -97,7 +97,7 @@ const Donate = () => {
             value={donorName}
             onChange={(e) => setDonorName(e.target.value)}
             required
-            className="border border-gray-300 rounded-lg p-2 w-80"
+            className="border border-gray-300 rounded-lg p-2 w-full"
           />
         </div>
         <div className="mb-4">
@@ -110,30 +110,30 @@ const Donate = () => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             required
-            className="border border-gray-300 rounded-lg p-2 w-80"
+            className="border border-gray-300 rounded-lg p-2 w-full"
           />
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">
             Card Details:
           </label>
-          <CardElement className="border border-gray-300 rounded-lg p-2 w-80" />
+          <CardElement className="border border-gray-300 rounded-lg p-2 w-full" />
         </div>
         <button
           type="submit"
-          className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg"
+          className="mt-4 w-full px-4 py-2 bg-green-600 text-white rounded-lg"
         >
           {isProcessing ? "Processing..." : "Donate"}
         </button>
       </form>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
       {successMessage && (
-        <p className="text-green-500 mt-4">{successMessage}</p>
+        <p className="text-green-500 mt-4 text-center">{successMessage}</p>
       )}
       {/* Conditionally render this button */}
       {showButton && (
   <button
-    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+    className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg"
     onClick={() => navigate("/dashboard")}
   >
     Go Back to the Dashboard
