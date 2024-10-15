@@ -43,15 +43,15 @@ const CreateFundraiser = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-semibold text-green-600 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <h1 className="text-3xl font-semibold text-green-600 mb-4 text-center">
         Create A New Fundraiser
       </h1>
 
       {/* Form for creating a fundraiser */}
       <form
         onSubmit={handleSubmit}
-        className="w-1/2 bg-white p-6 rounded-lg shadow-lg"
+        className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg"
       >
         <div className="mb-4">
           <label className="block text-gray-700">Title</label>
@@ -70,6 +70,7 @@ const CreateFundraiser = () => {
             onChange={(e) => setDescription(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-lg"
             required
+            rows={4}
           />
         </div>
         <div className="mb-4">
