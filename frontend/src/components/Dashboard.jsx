@@ -25,8 +25,8 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
-      <h1 className="text-3xl font-semibold text-green-600">Dashboard</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+      <h1 className="text-3xl font-semibold text-green-600 text-center">Dashboard</h1>
 
       {/* Link to create a new fundraiser */}
       <Link to="/create-fundraiser">
