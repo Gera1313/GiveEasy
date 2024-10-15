@@ -73,14 +73,14 @@ const Home = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-2 p-2 bg-blue-600 text-white rounded-lg w-3/4"
+            className="mt-2 p-2 bg-blue-600 text-white rounded-lg w-full"
           />
 
           {/* Displays error message if login fails */}
           {error && <p className="text-red-500">{error}</p>}
 
           {/* Login and Register buttons */}
-          <div className="flex space-x-4 mt-4">
+          <div className="flex space-x-4 mt-4 w-full justify-center">
             <button
               className="px-4 py-2 bg-blue-600 text-white rounded-lg"
               onClick={handleLogin}
@@ -96,8 +96,8 @@ const Home = () => {
         </div>
 
         {/* Right side - Active Fundraisers section */}
-        <div className="w-1/2 p-4 bg-white rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Active Fundraisers</h2>
+        <div className="w-full md:w-1/2 p-4 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Active Fundraisers</h2>
 
           {/* Display error message if fetching fundraisers failed */}
           {fetchError && <p className="text-red-500">{fetchError}</p>}
