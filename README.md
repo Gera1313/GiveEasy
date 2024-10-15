@@ -88,7 +88,7 @@ ESLint: For linting and code quality checks.
 
 ### Authentication & Payments
 ```md
-Stripe: For handling payments (if I use the Stripe API).
+Stripe: For handling payments.
 
 Stripe React Elements: For integrating the Stripe payment form in my React frontend.
 ```
