@@ -114,4 +114,4 @@ You can email me
 Have reached MVP for now. 
 
 To do: 
-Update Current Total when making donation.
+Update Current Total when making a donation.
