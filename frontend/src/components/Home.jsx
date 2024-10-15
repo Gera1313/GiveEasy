@@ -49,13 +49,13 @@ const Home = () => {
 
   // Main return statement of the Home component, rendering the login/register & Active Fundraisers interface.
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       {/* Container for the login and fundraisers, using flexbox to align them side by side */}
-      <div className="flex flex-row justify-between w-10/12">
+      <div className="flex flex-col md:flex-row justify-between w-full md:w-10/12 gap-4">
 
         {/* Left section for the login and register */}
-        <div className="w-1/2 flex flex-col items-center">
-          <h1 className="text-4xl font-bold text-blue-600 mb-6">
+        <div className="w-full md:w-1/2 flex flex-col items-center bg-white p-4 rounded-lg shadow-lg">
+          <h1 className="text-4xl font-bold text-blue-600 mb-6 text-center">
             Welcome to GiveEasy!
           </h1>
 
@@ -65,7 +65,7 @@ const Home = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="mt-4 p-2 border border-gray-300 rounded-lg w-3/4"
+            className="mt-4 p-2 border border-gray-300 rounded-lg w-full"
           />
           {/* Password input field */}
           <input
