@@ -30,23 +30,23 @@ const Dashboard = () => {
 
       {/* Link to create a new fundraiser */}
       <Link to="/create-fundraiser">
-        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">
+        <button className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg">
           Create New Fundraiser
         </button>
       </Link>
 
       {/* Active Fundraisers section */}
-      <h2 className="mt-6 text-2xl font-bold">Active Fundraisers</h2>
+      <h2 className="mt-6 text-2xl font-bold text-center">Active Fundraisers</h2>
 
       {/* Display error message if fetching fundraisers failed */}
-      {fetchError && <p className="text-red-500">{fetchError}</p>}
+      {fetchError && <p className="text-red-500 text-center">{fetchError}</p>}
 
-      <div className="mt-4">
+      <div className="mt-4 w-full">
         {!fetchError && fundraisers.length > 0 ? (
           fundraisers.map((fundraiser) => (
-            <div key={fundraiser._id} className="p-4 border-b">
-              <h3 className="text-xl">{fundraiser.title}</h3>
-              <p>{fundraiser.description}</p>
+            <div key={fundraiser._id} className="p-4 bg-white border rounded-lg shadow mb-4">
+              <h3 className="text-xl font-bold">{fundraiser.title}</h3>
+              <p className="mb-2">{fundraiser.description}</p>
               <p>Current Total: ${fundraiser.currentAmount}</p>
               <p>Goal: ${fundraiser.goalAmount}</p>
               <Link to={`/fundraisers/${fundraiser._id}/donate`}>
@@ -57,7 +57,7 @@ const Dashboard = () => {
             </div>
           ))
         ) : (
-          !fetchError && <p>No active fundraisers at this time.</p>
+          !fetchError && <p className="text-center">No active fundraisers at this time.</p>
         )}
       </div>
     </div>
