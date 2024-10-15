@@ -94,7 +94,7 @@ Stripe React Elements: For integrating the Stripe payment form in my React front
 ```
 
 ## Usage
-Donations
+Fundraising
 
 ## Testing
 
