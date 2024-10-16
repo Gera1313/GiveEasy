@@ -24,6 +24,16 @@ A platform where users can create fundraisers for charitable causes, and donors 
 - Integration with Stripe for donations.
 - Responsive UI to allow users to easily browse fundraisers.
 
+### Screenshots: 
+
+![Login](/frontend/public/images/home1.png)
+
+![Create a new fundraiser](/frontend/public/images/home2.png)
+
+![Active fundraisers](/frontend/public/images/home4.png)
+
+![Donate to fundraiser](/frontend/public/images/home3.png)
+
 ### User Story: 
 
 ```md
@@ -93,29 +103,6 @@ Stripe React Elements: For integrating the Stripe payment form in my React front
 ## Usage
 Fundraising
 
-Example screenshots: 
-
-![Login](/frontend/public/images/home1.png)
-
-![Create a new fundraiser](/frontend/public/images/home2.png)
-
-![Active fundraisers](/frontend/public/images/home4.png)
-
-![Donate to fundraiser](/frontend/public/images/home3.png)
-
-## Notes
-
-Have reached MVP for now. 
-
-To do: 
-- Update Current Total when making a donation.
-- Admin panel to review and approve fundraisers.
-- User profiles.
-- Add logout button and navigation bar.
-- PWA functionality to make the site installable and usable offline.
-- Add a feedback option for improvements
-- More...
-
 ## Testing
 
 ### Manual Testing
@@ -132,6 +119,20 @@ To do:
 
 ### Error Handling
 - Tested error scenarios, such as failed API requests and invalid form inputs, to confirm appropriate error messages are displayed.
+
+## Notes
+
+Have reached MVP for now. 
+
+To do: 
+- Update Current Total when making a donation.
+- Admin panel to review and approve fundraisers.
+- User profiles.
+- Add logout button and navigation bar.
+- PWA functionality to make the site installable and usable offline.
+- Add a feedback option for improvements. 
+- Give it a more modern look. 
+- More...
 
 ## Contributors
 Me
