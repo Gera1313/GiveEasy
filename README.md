@@ -113,6 +113,7 @@ To do:
 - User profiles.
 - Add logout button and navigation bar.
 - PWA functionality to make the site installable and usable offline.
+- Add a feedback option for improvements
 - More...
 
 ## Testing
@@ -126,6 +127,11 @@ To do:
 ### Responsive Testing
 - Tested the application on various devices and screen sizes to confirm mobile-friendliness.
 
+### Functionality Testing
+- Ensured all user interactions, including form submissions and navigation, operate as intended.
+
+### Error Handling
+- Tested error scenarios, such as failed API requests and invalid form inputs, to confirm appropriate error messages are displayed.
 
 ## Contributors
 Me
