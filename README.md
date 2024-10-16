@@ -24,8 +24,6 @@ A platform where users can create fundraisers for charitable causes, and donors 
 - Integration with Stripe for donations.
 - Responsive UI to allow users to easily browse fundraisers.
 
-Bonus: Maybe PWA functionality to make the site installable and usable offline.
-
 ### User Story: 
 
 ```md
@@ -102,8 +100,9 @@ Have reached MVP for now.
 To do: 
 - Update Current Total when making a donation.
 - Admin panel to review and approve fundraisers.
-- User profiles
-- Add logout button and navigation bar
+- User profiles.
+- Add logout button and navigation bar.
+- PWA functionality to make the site installable and usable offline.
 - More...
 
 ## Testing
