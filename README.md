@@ -99,9 +99,9 @@ Example screenshots:
 
 ![Create a new fundraiser](/frontend/public/images/home2.png)
 
-![Screenshot](/frontend/public/images/home4.png)
+![Active fundraisers](/frontend/public/images/home4.png)
 
-![Logo](/frontend/public/images/home3.png)
+![Donate to fundraiser](/frontend/public/images/home3.png)
 
 ## Notes
 
