@@ -119,7 +119,7 @@ To do:
 ## Testing
 
 ### Manual Testing
-- Conducted manual testing for each feature, including creating fundraisers, making donations, and checking the dashboard for updates.
+- Conducted manual testing for each feature, including creating fundraisers and making donations.
 
 ### Browser Compatibility
 - Verified functionality across different browsers, such as Chrome, Firefox, and Safari, to ensure a consistent user experience.
