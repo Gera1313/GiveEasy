@@ -117,6 +117,10 @@ To do:
 
 ## Testing
 
+### Manual Testing
+
+- Conducted manual testing for each feature, including creating fundraisers, making donations, and checking the dashboard for updates.
+
 ## Contributors
 Me
 
