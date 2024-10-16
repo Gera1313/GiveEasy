@@ -95,19 +95,6 @@ Stripe React Elements: For integrating the Stripe payment form in my React front
 ## Usage
 Fundraising
 
-## Testing
-
-## Contributors
-You can email me
-
-## Questions
-[Email Me Here](touya1313@hotmail.com)
-
-## GitHub
-[GitHub Repo](https://github.com/Gera1313)
-
-[Deployed Site]()
-
 ## Notes
 
 Have reached MVP for now. 
@@ -118,3 +105,16 @@ To do:
 - User profiles
 - Add logout button and navigation bar
 - More...
+
+## Testing
+
+## Contributors
+Me
+
+## Questions
+[Email Me Here](touya1313@hotmail.com)
+
+## GitHub
+[GitHub Repo](https://github.com/Gera1313)
+
+[Deployed Site]()
