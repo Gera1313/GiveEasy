@@ -97,11 +97,11 @@ Example screenshots:
 
 ![Login](/frontend/public/images/home1.png)
 
-![Screenshot](/images/screenshot.png)
+![Create a new fundraiser](/frontend/public/images/home2.png)
 
-![Logo](/images/logo.png)
+![Screenshot](/frontend/public/images/home4.png)
 
-![Screenshot](/images/screenshot.png)
+![Logo](/frontend/public/images/home3.png)
 
 ## Notes
 
