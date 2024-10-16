@@ -118,8 +118,14 @@ To do:
 ## Testing
 
 ### Manual Testing
-
 - Conducted manual testing for each feature, including creating fundraisers, making donations, and checking the dashboard for updates.
+
+### Browser Compatibility
+- Verified functionality across different browsers, such as Chrome, Firefox, and Safari, to ensure a consistent user experience.
+
+### Responsive Testing
+- Tested the application on various devices and screen sizes to confirm mobile-friendliness.
+
 
 ## Contributors
 Me
