@@ -93,6 +93,16 @@ Stripe React Elements: For integrating the Stripe payment form in my React front
 ## Usage
 Fundraising
 
+Example screenshots: 
+
+![Login](/frontend/public/images/home1.png)
+
+![Screenshot](/images/screenshot.png)
+
+![Logo](/images/logo.png)
+
+![Screenshot](/images/screenshot.png)
+
 ## Notes
 
 Have reached MVP for now. 
