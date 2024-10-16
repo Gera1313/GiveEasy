@@ -126,4 +126,4 @@ Me
 ## GitHub
 [GitHub Repo](https://github.com/Gera1313)
 
-[Deployed Site]()
+[Deployed Site]() (not yet deployed)
