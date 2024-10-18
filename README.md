@@ -131,7 +131,7 @@ To do:
 - Add logout button and navigation bar.
 - PWA functionality to make the site installable and usable offline.
 - Add a feedback option for improvements. 
-- Give it a more modern look. 
+- Give it a more modern and polished look. 
 - More...
 
 ## Contributors
