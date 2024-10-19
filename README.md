@@ -141,6 +141,6 @@ Me
 [Email Me Here](touya1313@hotmail.com)
 
 ## GitHub
-[GitHub Repo](https://github.com/Gera1313)
+[GitHub Repo](https://github.com/Gera1313/GiveEasy)
 
 [Deployed Site](https://giveeasy.netlify.app/)
