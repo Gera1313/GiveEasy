@@ -143,4 +143,4 @@ Me
 ## GitHub
 [GitHub Repo](https://github.com/Gera1313/GiveEasy)
 
-[Deployed Site](https://giveeasy.netlify.app/)
+[Deployed Site](https://giveeasy.netlify.app/)(have not deployed backend yet)
