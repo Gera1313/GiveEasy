@@ -134,6 +134,8 @@ To do:
 - Give it a more modern and polished look. 
 - More...
 
+Deployed frontend with Netlify and backend with Heroku, but my backend is not connected to a databse to retrieve and store data. I will not connect it since it requires payment. Maybe in the future. If I ever do decide to go fully live, I also need to connect frontend with backend. 
+
 ## Contributors
 Me
 
@@ -143,4 +145,4 @@ Me
 ## GitHub
 [GitHub Repo](https://github.com/Gera1313/GiveEasy)
 
-[Deployed Site](https://giveeasy.netlify.app/)(have not deployed backend yet)
+[Deployed Site](https://giveeasy.netlify.app/) (see additional info in 'Notes' section)
